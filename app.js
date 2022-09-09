@@ -10,9 +10,10 @@ const session= require("express-session");
 const passport = require("passport");
 const passportLocal=require("passport-local");
 const PassportLocalMongoose=require("passport-local-mongoose");
+const { Cookie } = require("express-session");
 
 //---------------------------setting up our express app configurtion to work with ejs and body parser------------------------
- 
+
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
 
@@ -22,7 +23,8 @@ app.set("view engine","ejs");
 app.use(session({
     secret:"Our little Secret.",
     resave:false,
-    saveUninitialized:false
+    saveUninitialized:false,
+    cookie:{maxAge:345600000}
 }));
 
 app.use(passport.initialize());
@@ -138,6 +140,7 @@ app.post('/register/:place', upload.single('image'), (req, res, next) => {
 
 app.post("/delete/:place",function (req,res) {
     if(req.isAuthenticated()){
+        
         const results = req.body.checkbox.trim().split(" ");
         Item.findById({_id:results[0]},function (err,result) {
             if(req.params.place==="found"){

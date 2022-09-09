@@ -1,3 +1,4 @@
+//---------------------------requiring dependencies-------------------------------
 const express=require("express");
 const bodyParser=require("body-parser");
 const mongoose=require("mongoose");
@@ -10,12 +11,14 @@ const passport = require("passport");
 const passportLocal=require("passport-local");
 const PassportLocalMongoose=require("passport-local-mongoose");
 
+//---------------------------setting up our express app configurtion to work with ejs and body parser------------------------
+ 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
 
 app.set("view engine","ejs");
 
-// const user="21bme041@iiitdmj.ac.in"
+// --------------------------------initializing a cookie or a session---------------------
 app.use(session({
     secret:"Our little Secret.",
     resave:false,
@@ -24,6 +27,8 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());  
+
+//----------------------------------configuring the multer-------------------------------
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -35,6 +40,8 @@ const storage = multer.diskStorage({
 });
   
 const upload = multer({ storage: storage });
+
+// -------------------connecting and Writing theSchema for database-----------------------
 
 mongoose.connect("mongodb+srv://Tester:1234@cluster1.utwwsu2.mongodb.net/foundedDB")
 
@@ -49,6 +56,8 @@ const registeredSchema=new mongoose.Schema({
 registeredSchema.plugin(PassportLocalMongoose);
 
 const Item=mongoose.model("item",registeredSchema);
+
+//----------------------------Creating a strategy and reading a cookie if there exist--------------------
 
 passport.use(Item.createStrategy());
 passport.serializeUser((user, done) => {

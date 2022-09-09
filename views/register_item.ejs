@@ -1,0 +1,32 @@
+<%- include("partials/header") %> 
+    <div id="head">
+        <center>
+            <h1>Register Found Item</h1>
+        </center>
+        <a href="/" id="homepage">Homepage</a>
+    </div>
+    <hr>
+    <!-----------------------------------------------------------------------------------------------------------------------------  -->
+    
+    <form action="/register/found" method="post" class="form" enctype="multipart/form-data">
+        <div class="row">
+            <div class="input" ><label>Image of found Item:</label>
+                <input type="file" src="" alt="" name="image" required id="choose_file" accept="image/png, image/jpeg">
+            </div>
+        </div>
+        
+        <div class="input" style="margin-left: 32px;"><label>Description of the item found:</label><br>
+            <textarea name="description"  cols="50" rows="5" placeholder="Write a description here..." ></textarea>
+        </div>
+        
+        
+        <button type="submit" class="btn btn-dark submit" value="Ritik">Submit</button>
+        
+        
+        
+    </form>
+
+
+    <!-- ------------------------------------------------------------------------------------------------------------------------------ -->
+<%- include("partials/footer") %> 
+    

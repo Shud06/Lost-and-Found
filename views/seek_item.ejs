@@ -1,0 +1,42 @@
+<%- include("partials/header") %> 
+<div id="head">
+    <center>
+        <h1>Founded Item</h1>
+    </center>
+    <a href="/" id="homepage">Homepage</a>
+</div>
+<hr>
+<% var index=0; %> 
+<div class="row irea" style="padding-left: 30px; padding: right 30px;">
+    
+    <% items.forEach(function (item) {index=0%>
+        <% item.found.forEach(function(image) { %>
+            <% if (image){ %> 
+            <div class="col-lg-4 col-md-6">
+                <div class="card" style="width: 18rem; margin-top: 20px;">
+                    <img src="data:image/<%=image.contentType%>;base64,
+                    <%=image.data.toString('base64')%>" class="card-image-top">
+                    
+                    <div class="card-body">
+                        <div class="card-title">
+                            <p><strong>Email to:</strong> <%= item.username %></p>
+                            <hr>
+                            <p><strong>Contact to:</strong> <%= item.contact %> </p>
+                            <hr>
+                        </div>
+                        <p class="card-text"><strong>Description:</strong> <%=image.descrip%></p>
+                        <hr>
+                        <form action="/delete/found" method="post">
+                            <input type="hidden" value="<%= item._id+" "+index %>" name="checkbox" onchange="this.form.submit() style="text-align: center;">
+                            <input type="submit" class="btn btn-primary" value="Claim!! (contact before claiming))"  style="width: 100%; font-size: 1rem;">
+                            
+                        </form>
+                        
+                    </div>
+                </div>
+            </div> 
+        <% }index+=1}) %>
+    <%})%>
+    
+</div>
+<%- include("partials/footer") %> 

@@ -1,0 +1,19 @@
+<%- include("partials/header") %> 
+<div class="container">
+    <form action="/register/found" method="get">
+        <input type="submit" value="Register Found Item" id="register_item" class="btn btn-primary input1">
+    </form>
+
+    <form action="/founded" method="get">
+        <input type="submit" value="Founded Items" class="btn btn-primary input1" style="margin-top: 10px;">
+    </form>
+    
+    <form action="/register/lost" method="get">
+        <input type="submit" value="Register Lost Item" id="register_item" class="btn btn-primary input1" style="margin-top: 10px;">
+    </form>
+
+    <form action="/lost" method="get">
+        <input type="submit" value="Lost Items" class="btn btn-primary input1" style="margin-top: 10px;">
+    </form>
+</div>
+<%- include("partials/footer") %> 

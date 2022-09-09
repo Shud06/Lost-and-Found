@@ -1,0 +1,27 @@
+<%- include("partials/header") %>
+<a href="/Signup">Create a account!!</a>
+<div id="head">
+    <center>
+        <h1>Login Please!!</h1>
+    </center>
+    <a href="/" id="homepage">Homepage</a>
+</div>
+<hr>
+<form action="/login" method="post" class="form">
+    <div class="row">
+        <div class="input" ><label>Institute email address:</label>
+            <input type="email" name="username" style="width: 30%;" required>
+        </div>
+    </div>
+    
+    <div class="input" style="margin-left: 32px;"><label>Contact no.:</label><br>
+        <input type="text" name="password" style="width: 30%;" required>
+    </div>
+    
+    
+    <button type="submit" class="btn btn-dark submit">Log In!!</button>
+    
+    
+    
+</form>
+<%- include("partials/footer") %>  

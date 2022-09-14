@@ -1,27 +1,97 @@
 <%- include("partials/header") %>
-<a href="/Signup">Create a account!!</a>
-<div id="head">
-    <center>
-        <h1>Login Please!!</h1>
-    </center>
-    <a href="/" id="homepage">Homepage</a>
-</div>
-<hr>
-<form action="/login" method="post" class="form">
-    <div class="row">
-        <div class="input" ><label>Institute email address:</label>
-            <input type="email" name="username" style="width: 30%;" required>
+    <link rel="stylesheet" media="screen and (max-width: 600px)" href="/CSS/login.css">
+    <div class="firstpage">
+        <div>
+            <p style="color: white; font-size :35px;
+            font-family: 'Sora', sans-serif;">Lost
+
+                <span style="color: #fccb70; font-size :45px;
+                font-family: 'Sora', sans-serif;">&</span>
+            </p>
+            <p
+                style="color: white; margin-left:20% ;font-size :50px ;margin-top: -35px;font-family: 'Sora', sans-serif;">
+                Found</p>
+            <button id="buttonFind">lets Find</button>
         </div>
+
+        <div class="wrapper">
+            <div class="container">
+
+                <div class="signup" style="color: #fccb70;">Sign Up</div>
+                <div class="login" style="color: #fccb70;">Log In</div>
+
+                <div class="signup-form">
+                    <form action="/Signup" method="post">
+                        <input type="text" placeholder="Your Email Address" class="input" name="username"><br />
+                        <input type="text" placeholder="Choose a Username" class="input" name="password"><br />
+
+                        <button type="submit" class="btnop">Create account</button>
+                    </form>
+                    
+                </div>
+
+                <div class="login-form">
+                    <form action="/login" method="post">
+                        <input type="email" placeholder="Email or Username" class="input" name="username"><br />
+                        <input type="text" placeholder="Password" class="input" name="password"><br />
+                        <button type="submit" class="btnop">log in</button>
+                    </form>
+                    
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- <div id="head">
+            <center>
+                <h1>Login Please!!</h1>
+            </center>
+            <a href="/" id="homepage">Homepage</a>
+        </div>
+        <hr>
+        <form action="/login" method="post" class="form">
+            <div class="row">
+                <div class="input"><label>Enter Email address:</label>
+                    <input type="email" name="username" style="width: 100%;" required>
+                </div>
+            </div>
+
+            <div class="input">
+                <label>Contact no.:</label><br>
+                <input type="text" name="password" style="width: 100%;" required>
+            </div>
+
+            <div style="display:flex; margin-top:5px">
+                <button type="submit" class="btn btn-dark submit">Log In!!</button>
+                <button type="submit" class="btn btn-dark submit" style=" margin-left:5px ">
+                    <a style="text-decoration: none ; color:white" href="/Signup"> Create Account </a>
+                </button>
+
+            </div> -->
+
+        <!-- </form> -->
     </div>
-    
-    <div class="input" style="margin-left: 32px;"><label>Contact no.:</label><br>
-        <input type="text" name="password" style="width: 30%;" required>
-    </div>
-    
-    
-    <button type="submit" class="btn btn-dark submit">Log In!!</button>
-    
-    
-    
-</form>
-<%- include("partials/footer") %>  
+    <script>
+        $(".login-form").hide();
+        $(".login").css("background", "none");
+
+        $(".login").click(function () {
+            $(".signup-form").hide();
+            $(".login-form").show();
+            $(".signup").css("background", "none");
+            $(".login").css("background", "#fff");
+        });
+
+        $(".signup").click(function () {
+            $(".signup-form").show();
+            $(".login-form").hide();
+            $(".login").css("background", "none");
+            $(".signup").css("background", "#fff");
+        });
+
+        $(".btn").click(function () {
+            $(".input").val("");
+        });
+    </script>
+    <%- include("partials/footer") %>

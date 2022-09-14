@@ -10,7 +10,7 @@ const session= require("express-session");
 const passport = require("passport");
 const passportLocal=require("passport-local");
 const PassportLocalMongoose=require("passport-local-mongoose");
-const { Cookie } = require("express-session");
+
 
 //---------------------------setting up our express app configurtion to work with ejs and body parser------------------------
 
@@ -44,8 +44,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // -------------------connecting and Writing theSchema for database-----------------------
-
-mongoose.connect("mongodb+srv://Tester:1234@cluster1.utwwsu2.mongodb.net/foundedDB")
+mongoose.connect("mongodb://localhost:27017/foundedDB");
+// mongoose.connect("mongodb+srv://Tester:1234@cluster1.utwwsu2.mongodb.net/foundedDB")
 
 const registeredSchema=new mongoose.Schema({
     username:String,
@@ -73,7 +73,7 @@ done(null, user);
 // ---------------------------------Root or homepage route------------------------
 
 app.get("/",function (req,res) {
-    // console.log(0);
+    console.log(0);
     if(req.isAuthenticated()){
         res.render("project");
     }else{
@@ -173,9 +173,10 @@ app.post("/delete/:place",function (req,res) {
     
 });
 
-//-------------------login routes------------------
+//-------------------login routes and Sign up post------------------
 
 app.get("/login",function (req,res) {
+    console.log("awbihyh");
     res.render("Login")
 });
 
@@ -203,18 +204,12 @@ app.post("/login",function (req,res) {
     
 });
 
-//------------------------------------Sign up page route--------------------------
-
-app.get("/Signup",function (req,res) {
-    res.render("Sign_up");
-})
-
 app.post("/Signup",function (req,res) {
-    
+
     Item.register({username:req.body.username,contact:req.body.password},req.body.password,function (err,user) {
         if(err){
             console.log(err);
-            res.redirect("/Signup");
+            res.redirect("/login");
         }else{
             
             passport.authenticate("local",{failureRedirect:"/login"})(req,res,function () {
@@ -224,6 +219,11 @@ app.post("/Signup",function (req,res) {
     })
     
 });
+
+
+
+
+
 
 //----------------------------route for displaying lost items and found items-------------------
 

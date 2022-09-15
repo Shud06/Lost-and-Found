@@ -1,31 +1,35 @@
-<%- include("partials/header") %> 
+<%- include("partials/header") %>
+    <link rel="stylesheet" media="screen and (max-width: 600px)" href="/CSS/register.css">
     <div id="head">
         <center>
             <h1>Register Lost Item</h1>
         </center>
-        <a href="/" id="homepage">Homepage</a>
+        <a href="/" id="homepage">
+            <div class="image-div">
+                <img src="/Images/home.png" alt="not-found">
+            </div>
+        </a>
     </div>
     <hr>
     <!-----------------------------------------------------------------------------------------------------------------------------  -->
-    
-    <form action="/register/lost" method="post" class="form" enctype="multipart/form-data">
-        <div class="row">
-            <div class="input" ><label>Image of found Item:</label>
-                <input type="file" src="" alt="" name="image" required id="choose_file" accept="image/png, image/jpeg">
-            </div>
+
+    <form class="register-item" action="/register/lost" method="post" class="form" enctype="multipart/form-data">
+
+        <div class="input">
+            <label>Image of found Item:</label>
+            <input type="file" src="" alt="" name="image" required id="choose_file" accept="image/png, image/jpeg">
         </div>
-        
-        <div class="input" style="margin-left: 32px;"><label>Description of the item found:</label><br>
-            <textarea name="description"  cols="50" rows="5" placeholder="Write a description here..." ></textarea>
+
+
+        <div class="input">
+            <label>Description of the item found:</label><br>
+            <textarea name="description" cols="50" rows="5" placeholder="Write a description here..."></textarea>
         </div>
-        
-        
+
+
         <button type="submit" class="btn btn-dark submit">Submit</button>
-        
-        
-        
     </form>
 
 
     <!-- ------------------------------------------------------------------------------------------------------------------------------ -->
-<%- include("partials/footer") %> 
+    <%- include("partials/footer") %>

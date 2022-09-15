@@ -1,26 +1,29 @@
 <%- include("partials/header") %>
-<div id="head">
-    <center>
-        <h1>Create Your Account!!</h1>
-    </center>
-    <a href="/" id="homepage">Homepage</a>
-</div>
-<hr>
-<form action="/Signup" method="post" class="form">
-    <div class="row">
-        <div class="input" ><label>Institute email address:</label>
-            <input type="email" name="username" style="width: 30%;" required>
+    <div id="head">
+        <center>
+            <h1>Create Your Account!!</h1>
+        </center>
+        <a href="/" id="homepage">Homepage</a>
+    </div>
+    <hr>
+    <form action="/Signup" method="post" class="form">
+
+        <div class="row ">
+            <div class="input inputCont">
+                <label style="text-align: center;">Institute email address:</label>
+                <input type="email" name="username" style="width: 100%;" required>
+            </div>
         </div>
-    </div>
-    
-    <div class="input" style="margin-left: 32px;"><label>Contact no.:</label><br>
-        <input type="text" name="password" style="width: 30%;" required>
-    </div>
-    
-    
-    <button type="submit" class="btn btn-dark submit">Sign Up!!</button>
-    
-    
-    
-</form>
-<%- include("partials/footer") %>  
+
+        <div class="input inputCont">
+            <label>Contact no.:</label><br>
+            <input type="text" name="password" style="width: 100%;" required>
+        </div>
+
+
+        <button type="submit" class="btn btn-dark submit">Sign Up!!</button>
+
+
+
+    </form>
+    <%- include("partials/footer") %>

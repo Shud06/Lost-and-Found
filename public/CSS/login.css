@@ -76,6 +76,7 @@ input[type=file]{
 .btnop{
     width: 100%;
     background:#fccb70;
+    border: 0px;
     height: 60px;
     text-align: center;
     line-height: 47px;

@@ -44,8 +44,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // -------------------connecting and Writing theSchema for database-----------------------
-mongoose.connect("mongodb://localhost:27017/foundedDB");
-// mongoose.connect("mongodb+srv://Tester:1234@cluster1.utwwsu2.mongodb.net/foundedDB")
+// mongoose.connect("mongodb://localhost:27017/foundedDB");
+mongoose.connect("mongodb+srv://Tester:1234@cluster1.utwwsu2.mongodb.net/foundedDB")
 
 const registeredSchema=new mongoose.Schema({
     username:String,
@@ -73,7 +73,7 @@ done(null, user);
 // ---------------------------------Root or homepage route------------------------
 
 app.get("/",function (req,res) {
-    console.log(0);
+    // console.log(0);
     if(req.isAuthenticated()){
         res.render("project");
     }else{
@@ -139,13 +139,22 @@ app.post('/register/:place', upload.single('image'), (req, res, next) => {
 // ---------------------------For Deleting a item from database------------------------
 
 app.post("/delete/:place",function (req,res) {
+    
     if(req.isAuthenticated()){
         
         const results = req.body.checkbox.trim().split(" ");
         Item.findById({_id:results[0]},function (err,result) {
             if(req.params.place==="found"){
                 var li=result.found
-                delete li[parseInt(results[1])];
+                console.log(results[1]);
+                if (results[1]!=0){
+                    li.splice(parseInt(results[1]),parseInt(results[1]));
+                }else{
+                    li.shift();
+                   
+                }
+                
+                
                 Item.updateOne({_id:results[0]},{found:li},function (err) {
                 if(err){
                     console.log(err);
@@ -156,7 +165,11 @@ app.post("/delete/:place",function (req,res) {
             });
             }else{
                 var li=result.lost
-                delete li[parseInt(results[1])];
+                if (li.length>1){
+                    li.splice(parseInt(results[1]),parseInt(results[1]));
+                }else{
+                    li.pop()
+                }
                 Item.updateOne({_id:results[0]},{lost:li},function (err) {
                 if(err){
                     console.log(err);
@@ -176,7 +189,7 @@ app.post("/delete/:place",function (req,res) {
 //-------------------login routes and Sign up post------------------
 
 app.get("/login",function (req,res) {
-    console.log("awbihyh");
+    // console.log("awbihyh");
     res.render("Login")
 });
 
@@ -235,7 +248,7 @@ app.get("/founded",function(req,res){
                 res.status(500).send('An error occurred', err);
             }
             else {
-                console.log(items);
+                // console.log(items);
                 res.render('seek_item', { items: items });
             }
         });
